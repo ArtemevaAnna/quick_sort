@@ -1,43 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
  
-void swap(int* a, int* b) // воид - функция котора ничего не возвращает. данная функция принимает на вход два указателя а и b.
+void swap(int* a, int* b)
 {
     int t = *a;
     *a = *b;
-    *b = t; //тут происходит помена местами
+    *b = t;
 }
  
-int partition (int arr[], int low, int high) // данная функция принимает массив, два значения первое и последнее в массиве
+int partition (int arr[], int low, int high)
 {
-    int pivot = arr[high]; // переменна приравненая к конечному элементу
-    int i = (low - 1); //переменна к которой присвоили первое значение - 1
+    int pivot = arr[high];
+    int i = (low - 1);
  
-    for (int j = low; j <= high - 1; j++) // начало цикла фор, заводим переменную и выполняем цикл, пока j будет меньше или равно крайний -1 то выполняем
+    for (int j = low; j <= high - 1; j++)
     {
-        if (arr[j] < pivot) //сравнение j с саммым верхним элементом, если j меньше то меняем их местами и увличиваем на 1
+        if (arr[j] < pivot)
         {
             i++; 
             swap(&arr[i], &arr[j]);
         }
     }
-    swap(&arr[i + 1], &arr[high]); //меняем значения массива i+1 и верхнее значение
+    swap(&arr[i + 1], &arr[high]);
     return (i + 1);
 }
  
-/* Основная функция, реализующая QuickSort
-arr[] --> Массив для сортировки,
-low --> Начальный индекс,
-high --> Конечный индекс */
-
-void quickSort(int arr[], int low, int high) // принимает значения
+void quickSort(int arr[], int low, int high)
 {
-    if (low < high) // если нижний меньше верхнего то мы заводим переменную pi
+    if (low < high)
     {
-        int pi = partition(arr, low, high); // заводим переменную и вызываем функцию передавая в неё значения массива
+        int pi = partition(arr, low, high);
         
         quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high); //выполнение сортировки
+        quickSort(arr, pi + 1, high);
     }
 }
  
